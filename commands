@@ -1,0 +1,163 @@
+-- 1. SELECT
+-- İşlev: Veritabanındaki verileri sorgular.
++ SELECT * FROM kullanicilar;
+**********************************************
+
+-- 2. INSERT INTO
+-- İşlev: Veritabanına yeni veri ekler.
++ INSERT INTO kullanicilar (isim, yas) VALUES ('Ahmet', 30);
+**********************************************
+
+-- 3. UPDATE
+-- İşlev: Mevcut verileri günceller.
++ UPDATE kullanicilar SET yas = 31 WHERE isim = 'Ahmet';
+**********************************************
+
+-- 4. DELETE
+-- İşlev: Veritabanından veri siler.
++ DELETE FROM kullanicilar WHERE isim = 'Ahmet';
+**********************************************
+
+-- 5. CREATE TABLE
+-- İşlev: Yeni bir tablo oluşturur.
++ CREATE TABLE kullanicilar (
++     id INT PRIMARY KEY AUTO_INCREMENT,
++     isim VARCHAR(50),
++     yas INT
++ );
+**********************************************
+
+-- 6. ALTER TABLE
+-- İşlev: Varolan tabloyu değiştirir (kolon ekler, siler, vs.).
++ ALTER TABLE kullanicilar ADD COLUMN email VARCHAR(100);
+**********************************************
+
+-- 7. DROP TABLE
+-- İşlev: Veritabanındaki tabloyu siler.
++ DROP TABLE kullanicilar;
+**********************************************
+
+-- 8. JOIN
+-- İşlev: Birden fazla tabloyu birleştirir.
++ SELECT * FROM kullanicilar JOIN adresler ON kullanicilar.id = adresler.kullanici_id;
+**********************************************
+
+-- 9. WHERE
+-- İşlev: Sorgu sonuçlarını filtreler.
++ SELECT * FROM kullanicilar WHERE yas > 25;
+**********************************************
+
+-- 10. ORDER BY
+-- İşlev: Sorgu sonuçlarını sıralar.
++ SELECT * FROM kullanicilar ORDER BY yas DESC;
+**********************************************
+
+-- 11. GROUP BY
+-- İşlev: Verileri gruplar ve genellikle toplama işlevleriyle birlikte kullanılır.
++ SELECT yas, COUNT(*) FROM kullanicilar GROUP BY yas;
+**********************************************
+
+-- 12. DISTINCT
+-- İşlev: Tekrarlanan kayıtları kaldırarak yalnızca benzersiz sonuçları döndürür.
++ SELECT DISTINCT yas FROM kullanicilar;
+**********************************************
+
+-- 13. LIMIT
+-- İşlev: Sorgu sonuçlarının sayısını sınırlar.
++ SELECT * FROM kullanicilar LIMIT 5;
+**********************************************
+
+-- 14. OFFSET
+-- İşlev: Sorgu sonuçlarını kaydırır, genellikle LIMIT ile birlikte kullanılır.
++ SELECT * FROM kullanicilar LIMIT 5 OFFSET 10;
+**********************************************
+
+-- 15. BETWEEN
+-- İşlev: Bir değer aralığında olup olmadığını kontrol eder.
++ SELECT * FROM kullanicilar WHERE yas BETWEEN 20 AND 30;
+**********************************************
+
+-- 16. IN
+-- İşlev: Bir kolonun belirli bir değerler listesinde olup olmadığını kontrol eder.
++ SELECT * FROM kullanicilar WHERE isim IN ('Ahmet', 'Mehmet');
+**********************************************
+
+-- 17. LIKE
+-- İşlev: Bir değerle belirli bir desen eşleşip eşleşmediğini kontrol eder.
++ SELECT * FROM kullanicilar WHERE isim LIKE 'A%'; -- 'A' ile başlayan isimler
+**********************************************
+
+-- 18. IS NULL / IS NOT NULL
+-- İşlev: Bir kolonun NULL olup olmadığını kontrol eder.
++ SELECT * FROM kullanicilar WHERE email IS NULL;
+**********************************************
+
+-- 19. CASE
+-- İşlev: Şartlı ifadeler oluşturur ve sonuçlara göre değer döndürür.
++ SELECT isim, 
++        CASE 
++            WHEN yas < 18 THEN 'Genç'
++            WHEN yas BETWEEN 18 AND 60 THEN 'Yetişkin'
++            ELSE 'Yaşlı'
++        END AS yaş_durumu
++ FROM kullanicilar;
+**********************************************
+
+-- 20. HAVING
+-- İşlev: GROUP BY ile gruplandırılmış verilere filtre uygular.
++ SELECT yas, COUNT(*) 
++ FROM kullanicilar 
++ GROUP BY yas 
++ HAVING COUNT(*) > 1;
+**********************************************
+
+-- 21. UNION
+-- İşlev: Birden fazla sorgunun sonuçlarını birleştirir.
++ SELECT isim FROM kullanicilar 
++ UNION 
++ SELECT isim FROM eski_kullanicilar;
+**********************************************
+
+-- 22. INTERSECT
+-- İşlev: Birden fazla sorgunun ortak sonuçlarını döndürür.
++ SELECT isim FROM kullanicilar 
++ INTERSECT 
++ SELECT isim FROM eski_kullanicilar;
+**********************************************
+
+-- 23. EXCEPT (veya MINUS)
+-- İşlev: Bir sorgunun sonuçlarından diğer sorgunun sonuçlarını çıkarır.
++ SELECT isim FROM kullanicilar 
++ EXCEPT 
++ SELECT isim FROM eski_kullanicilar;
+**********************************************
+
+-- 24. ALTER TABLE DROP COLUMN
+-- İşlev: Varolan tablodan bir kolon siler.
++ ALTER TABLE kullanicilar DROP COLUMN email;
+**********************************************
+
+-- 25. TRUNCATE TABLE
+-- İşlev: Tabloyu tamamen temizler, tüm verileri siler ama tablo yapısını korur.
++ TRUNCATE TABLE kullanicilar;
+**********************************************
+
+-- 26. CREATE INDEX
+-- İşlev: Bir veya daha fazla kolona indeks ekler ve sorgu performansını artırır.
++ CREATE INDEX idx_isim ON kullanicilar (isim);
+**********************************************
+
+-- 27. DROP INDEX
+-- İşlev: Varolan bir indeksi siler.
++ DROP INDEX idx_isim;
+**********************************************
+
+-- 28. VIEW
+-- İşlev: Sık kullanılan sorguları saklar ve tablo gibi kullanmanıza olanak tanır.
++ CREATE VIEW kullanici_view AS SELECT isim, yas FROM kullanicilar;
+**********************************************
+
+-- 29. DROP VIEW
+-- İşlev: Varolan bir görünümü siler.
++ DROP VIEW kullanici_view;
+**********************************************
