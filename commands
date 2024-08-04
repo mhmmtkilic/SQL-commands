@@ -1,3 +1,12 @@
+1- Oracle RDBMS.
+2- Amazon RDS.
+3 – SQL Developer.
+4 – IBM Informix.
+5 – Microsoft SQL Server.
+6 – MySQL.
+7 – Teradata.
+8 – EMS SQL Manager.
+
 -- 1. SELECT
 -- İşlev: Veritabanındaki verileri sorgular.
 + SELECT * FROM kullanicilar;
